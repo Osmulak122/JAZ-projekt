@@ -1,5 +1,6 @@
 package com.example.jazprojekt.model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,7 @@ public class Gate {
     private String status;
     private boolean isSchengen;
     private boolean isOccupied;
+
 
     public Gate() {
     }

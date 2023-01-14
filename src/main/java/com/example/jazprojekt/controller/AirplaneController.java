@@ -2,6 +2,7 @@
 package com.example.jazprojekt.controller;
 
 import com.example.jazprojekt.model.Airplane;
+import com.example.jazprojekt.repository.AirplaneRepository;
 import com.example.jazprojekt.service.AirplaneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

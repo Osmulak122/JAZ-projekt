@@ -4,6 +4,7 @@ package com.example.jazprojekt.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.Year;
 
 @Entity
 @Table(name = "airplane")
@@ -15,7 +16,7 @@ public class Airplane {
     private String model;
     private String registrationNumber;
     private int capacity;
-    private LocalDate productionYear;
+    private int productionYear;
     @OneToOne(fetch = FetchType.EAGER)
     private Employee serviceEngineer;
 
@@ -25,7 +26,7 @@ public class Airplane {
     public Airplane() {
     }
 
-    public Airplane(String make, String model, String registrationNumber, int capacity, LocalDate productionYear, Employee serviceEngineer, Gate gate) {
+    public Airplane(String make, String model, String registrationNumber, int capacity, int productionYear, Employee serviceEngineer, Gate gate) {
         this.make = make;
         this.model = model;
         this.registrationNumber = registrationNumber;
@@ -75,11 +76,11 @@ public class Airplane {
         this.capacity = capacity;
     }
 
-    public LocalDate getProductionYear() {
+    public int getProductionYear() {
         return productionYear;
     }
 
-    public void setProductionYear(LocalDate productionYear) {
+    public void setProductionYear(int productionYear) {
         this.productionYear = productionYear;
     }
 
