@@ -3,6 +3,7 @@ package com.example.jazprojekt.controller;
 import com.example.jazprojekt.model.Employee;
 import com.example.jazprojekt.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -15,28 +16,38 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/employee")
-    public List<Employee> getAllEmployees() {
-        return employeeService.getAllEmployees();
+    public ResponseEntity<List<Employee>> getAllEmployees() {
+        return ResponseEntity.ok(employeeService.getAllEmployees());
     }
 
-    @GetMapping("/employee/{id}")
-    public Employee getEmployeeById(@PathVariable Long id) {
-        return employeeService.getEmployeeById(id);
+    @GetMapping("/employee/id/{id}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
+        return ResponseEntity.ok(employeeService.getEmployeeById(id));
     }
 
     @PostMapping("/employee")
-    public Employee createEmployee(@RequestBody Employee employee) {
-        return employeeService.createEmployee(employee);
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+        return ResponseEntity.ok(employeeService.createEmployee(employee));
     }
 
-    @PutMapping("/employee/{id}")
-    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
-        employee.setId(id);
-        return employeeService.updateEmployee(employee);
+    @PutMapping("/employee/id/{id}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
+        return ResponseEntity.ok(employeeService.updateEmployee(id, employee));
     }
 
     @DeleteMapping("/employee/{id}")
-    public void deleteEmployee(@PathVariable Long id) {
-        employeeService.deleteEmployee(id);
+    public ResponseEntity<String> deleteEmployee(@PathVariable Long id) {
+        employeeService.deleteEmployeeById(id);
+        return ResponseEntity.ok("ok");
+    }
+
+    @GetMapping("/employee/firstname/{firstname}/lastname/{lastname}")
+    public ResponseEntity<Employee> getEmployeeByFirstNameAndLastName(@PathVariable String firstname, @PathVariable String lastname) {
+        return ResponseEntity.ok(employeeService.getEmployeeByFirstNameAndLastName(firstname, lastname));
+    }
+
+    @GetMapping("/employee/position/{position}")
+    public ResponseEntity<List<Employee>> getEmployeesByPosition(@PathVariable String position) {
+        return ResponseEntity.ok(employeeService.getEmployeesByPosition(position));
     }
 }
