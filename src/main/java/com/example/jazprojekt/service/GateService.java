@@ -55,6 +55,13 @@ public class GateService {
             if(gate.getStatus() != null) {
                 gateToUpdate.setStatus(gate.getStatus());
             }
+            if(gate.isOccupied() != gateToUpdate.isOccupied()) {
+                gateToUpdate.setOccupied(gate.isOccupied());
+            }
+            if(gate.isSchengen() != gateToUpdate.isSchengen()) {
+                gateToUpdate.setSchengen(gate.isSchengen());
+            }
+
             return gateRepository.save(gateToUpdate);
         }
 
